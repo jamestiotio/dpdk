@@ -697,7 +697,7 @@ rte_flow_conv_item_spec(void *buf, const size_t size,
 		src.geneve_opt = data;
 		dst.geneve_opt = buf;
 		tmp = spec.geneve_opt->option_len << 2;
-		if (size > 0 && src.geneve_opt->data) {
+		if (size >= off + tmp && src.geneve_opt->data) {
 			deep_src = (void *)((uintptr_t)(dst.geneve_opt + 1));
 			dst.geneve_opt->data = rte_memcpy(deep_src,
 							  src.geneve_opt->data,
